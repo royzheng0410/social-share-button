@@ -15,30 +15,29 @@ window.SocialShareWeChatButton =
 
     $("body").append($wDialog)
 
-   bindEvents: ()->
-     $wContainer = $("#ss-wechat-dialog")
-     $wContainer.find(".wechat-popup-close").on "click", (e) ->
-       $wContainer.hide()
+  bindEvents: ()->
+    $wContainer = $("#ss-wechat-dialog")
+    $wContainer.find(".wechat-popup-close").on "click", (e) ->
+      $wContainer.hide()
 
-   qrcode: (opts={}) ->
-     unless $("#ss-wechat-dialog").length
-       @init(opts)
-       @bindEvents()
+  qrcode: (opts={}) ->
+    unless $("#ss-wechat-dialog").length
+      @init(opts)
+      @bindEvents()
+    $wBody = $('#ss-wechat-dialog-qr')
+    $wBody.empty()
+    $wBody.qrcode
+      width: 200
+      height: 200
+      text: opts.url
 
-     $wBody = $('#ss-wechat-dialog-qr')
-     $wBody.empty()
-     $wBody.qrcode
-       width: 200
-       height: 200
-       text: opts.url
+    $wContainer = $("#ss-wechat-dialog")
+    top = ($(window).height() - $wContainer.height()) / 2
+    top = 100 if top < 100
+    left = ($(window).width() - $wContainer.width()) / 2
 
-     $wContainer = $("#ss-wechat-dialog")
-     top = ($(window).height() - $wContainer.height()) / 2
-     top = 100 if top < 100
-     left = ($(window).width() - $wContainer.width()) / 2
+    $wContainer.css
+      top: top
+      left: left
 
-     $wContainer.css
-       top: top
-       left: left
-
-     $wContainer.show()
+    $wContainer.show()

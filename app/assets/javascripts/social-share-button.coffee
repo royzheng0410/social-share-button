@@ -13,6 +13,7 @@ window.SocialShareButton =
     title = encodeURIComponent($(el).data(site + '-title') || $parent.data('title') || '')
     img = encodeURIComponent($parent.data("img") || '')
     url = encodeURIComponent($parent.data("url") || '')
+    wx_url = encodeURIComponent($parent.data("wx-url") || '')
     via = encodeURIComponent($parent.data("via") || '')
     desc = encodeURIComponent($parent.data("desc") || ' ')
 
@@ -55,7 +56,7 @@ window.SocialShareButton =
       when "wechat"
         throw new Error("You should require social-share-button/wechat to your application.js") unless window.SocialShareWeChatButton
         window.SocialShareWeChatButton.qrcode
-          url: url
+          url: wx_url
           header: $(el).attr('title')
           footer: $(el).data('wechat-footer')
 
